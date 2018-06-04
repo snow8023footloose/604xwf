@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdn.bootcss.com/axios/0.16.0/axios.min.js"></script>
+</head>
+<body>
+<button class="btn">测试授权</button>
+<button class="btn">测试授权</button>
+<button class="btn">测试授权</button>
+<button class="btn">测试授权</button>
+<button class="btn">测试授权</button>
+<button class="btn">测试授权</button>
+<button class="btn">测试授权</button>
+<button onclick="numbers.forEach(myFunction)">点我</button>
+<p id="demo"></p>
+</body>
+<script>
+
+
+
+
+  demoP = document.getElementById("demo");
+  var numbers = [4, 9, 16, 25];
+
+  function myFunction(item, index) {
+    demoP.innerHTML = demoP.innerHTML + "index[" + index + "]: " + item + "<br>";
+  }
+
+  /*var arr = [
+    {
+      name:'分量',
+      zindex:3,
+      attrs: [
+        {
+          id:31,
+          name:'大份'
+        },
+        {
+          id:32,
+          name:'中份'
+        },
+        {
+          id:33,
+          name:'小份'
+        }
+      ]
+    },
+    {
+      name:'温度',
+      zindex:2,
+      attrs: [
+        {
+          id:21,
+          name:'热'
+        },
+        {
+          id:22,
+          name:'冷'
+        }
+      ]
+    }
+    // ,{
+    //   name:'分量1',
+    //   zindex:1,
+    //   attrs: [
+    //     {
+    //       id:11,
+    //       name:'大份11'
+    //     },
+    //     {
+    //       id:12,
+    //       name:'大份12'
+    //     }
+    //   ]
+    // },
+    // {
+    //   name:'分量4',
+    //   zindex:4,
+    //   attrs: [
+    //     {
+    //       id:41,
+    //       name:'大份41'
+    //     },
+    //     {
+    //       id:42,
+    //       name:'大份42'
+    //     }
+    //   ]
+    // },{
+    //   name:'分量5',
+    //   zindex:5,
+    //   attrs: [
+    //     {
+    //       id:51,
+    //       name:'大份51'
+    //     },
+    //     {
+    //       id:52,
+    //       name:'大份52'
+    //     }
+    //   ]
+    // },
+  ]
+  arr.sort(function (a,b) {
+    return a.zindex - b.zindex;
+  })
+
+  function generateSku(skuArr,specArr) {
+    if(specArr.length === 0){
+      return skuArr;
+    }
+    let spec = specArr.shift();
+    if(!skuArr || skuArr.length === 0){
+      skuArr = spec.attrs.map(function (item) {
+        return {
+          attrJoin:item.id,
+          content:spec.name + ":" + item.name
+        }
+      })
+      return generateSku(skuArr,specArr);
+    }
+    let newSkuArr = [];
+    for(let item of skuArr){
+      for(let newItem of spec.attrs){
+        newSkuArr.unshift({
+          attrJoin:item.attrJoin + "_" + newItem.id,
+          content: item.content + ";" + spec.name + ":" + newItem.name
+        })
+      }
+    }
+    return generateSku(newSkuArr,specArr);
+  }
+
+  console.log(generateSku([],arr));*/
+  // console.log(arr)
+  // for(let item of arr){
+  //     for(let i of item.attrs){
+  //         for(let j of item.attrs){
+  //
+  //         }
+  //     }
+  // }
+  // console.log(arr.__proto__);
+  // console.log(Array.prototype);
+  // window.onload = function () {
+  //     var query = window.location.search.substring(1);
+  //     var vars = query.split("&");
+  //     for (var i=0;i<vars.length;i++) {
+  //         var pair = vars[i].split("=");
+  //         // if(pair[0] == variable){return pair[1];}
+  //     }
+  //     console.log(pair);
+  //     return(false);
+
+  //
+  //     throw new Error();
+  //     console.log(111);
+  //     var condition = [
+  //             // {
+  //             //     feild: 'status',
+  //             //     value: 'enable',
+  //             //     joinType: 'eq'
+  //             // },
+  //             {
+  //                 feild:'createTime',
+  //                 value:'2018-04-16',
+  //                 joinType:'lt'
+  //             }
+  //             // {
+  //             //     feild:'createTime',
+  //             //     value:'2018-03-28',
+  //             //     joinType:'lt'
+  //             // }
+  //         ];
+
+  <input type="button" id="btn" value="免费获取验证码" onclick="settime(this)" />
+    <script type="text/javascript">
+  var countdown=60;
+  function settime(val) {
+    if (countdown == 0) {
+      val.removeAttribute("disabled");
+      val.value="免费获取验证码";
+      countdown = 60;
+    } else {
+      val.setAttribute("disabled", true);
+      val.value="重新发送(" + countdown + ")";
+      countdown--;
+    }
+    setTimeout(function() {
+      settime(val)
+    },1000)
+  }
+
+
+
+  <upload
+    v-on:ToUrl="listenUrl"
+    :name="UID('/dishes/')"
+    :target="this.dishes.bannerImg"></upload>
+
+  listenUrl(data){
+    this.dishes.thumb = data.name
+  },
+
+
+      let dishes = {
+          name:'zhangsan',
+          specs: [
+              {
+                  id:654,
+                  name:'分量',
+                  zindex:1
+              }
+          ],
+          skus:[
+              {
+                  attrJoin:'654_123',
+                  normalPrice:45.23,
+                  did:123
+              }
+          ],
+          tags:[
+            {
+              id:123
+            },
+            {
+              id:123
+            }
+          ],
+          popularizeTags: [{
+            id:123
+          }],
+          uid:123,
+          cid:123
+      };
+  //     let restaurant = {
+  //         "name":"测试店铺11111",
+  //         "tid":123456789,
+  //         "phone":"13838384388",
+  //         "province":"湖南",
+  //         "city":"长沙",
+  //         "area":"开福区",
+  //         "address":"华府一航线",
+  //         "pid":2345678,
+  //         "eid":987654,
+  //         "businessTime":"09:30:00-12:00:00",
+  //         "businessPermitNum":"businessPermitNum",
+  //         "businessPermitImg":"businessPermitImg",
+  //         "foodPermitNum":"foodPermitNum",
+  //         "doorImg":"doorImg",
+  //         "longitude":654.1651561,
+  //         "latitude":654,
+  //         "serviceCharge":654.00
+  //     };
+  //     axios.defaults.withCredentials=true
+  //     axios.defaults.baseURL = 'http://localhost';
+  //     axios.defaults.headers.post['Content-Type'] = 'application/json';
+  //     axios.post("/restaurantManager/login?username=13838384388&password=13838384388"
+  //         ,  restaurant,{
+  //         headers : {
+  //             'Content-Type':'application/x-www-form-urlencoded'
+  //             //'Content-Type':'application/json'
+  //         }
+  //     )
+  //         .then( res => {
+  //             console.log(res.data)
+  //         })
+  //         .catch(err => {
+  //             console.log(err)
+  //         })
+
+  //     var btn = document.querySelector('#btn');
+  //     btn.addEventListener('click',function () {
+  //         axios.post("/restaurantManager/add"
+  //             // ,  restaurant,{
+  //             // headers : {
+  //             //     'Content-Type':'application/x-www-form-urlencoded'
+  //             //     //'Content-Type':'application/json'
+  //             // }
+  //         )
+  //     })
+  //
+  //      test();
+  //  }
+
+  https://order-online.oss-cn-shenzhen.aliyuncs.com/dishes/thumb1524298146409.thumbrestaurant/dishes/097e2a16-4d58-4575-8210-0475911860c8
+
+
+  window={};
+  function b(j) {
+    var h = 1,
+      g = 0,
+      e;
+    if (j) {
+      h = 0;
+      for (e = j.length - 1; e >= 0; e--) {
+        g = j.charCodeAt(e);
+        h = (h << 6 & 268435455) + g + (g << 14);
+        g = h & 266338304;
+        h = g != 0 ? h ^ g >> 21 : h
+      }
+    }
+    return h
+  }
+  getUID = function() {
+    _fuid = 1;
+    var j = (new Date() - 0);
+    var g = "http://www.baidu.com";//把这改成你的域名
+    var h = b(g);
+    e = "" + j + h + Math.random() + Math.random() + Math.random() + Math.random();
+    e = e.replace(/\./g, "").substring(0, 32);
+    _uid = e;
+    return e
+  };
+
+  console.log(getUID());
+
+  // var o = {
+  //   name: '小芳',
+  //   age: 18
+  // }
+  //
+  // var n = {
+  //   width:20,
+  //   height:30
+  // }
+  //
+  // var extend=function(o,n){
+  //   for (var p in n){
+  //     if(n.hasOwnProperty(p) && (!o.hasOwnProperty(p) ))
+  //       o[p]=n[p];
+  //   }
+  // };
+  // console.log(extend(o, n));
+
+  // var arr=[2,3,5,6,8,9]
+
+  // var arr1=arr.slice(2,-1)
+
+  // 那从正直到负值，这个理论上是取不到的，但是看下结果
+
+</script>
+
+
+
+</html>

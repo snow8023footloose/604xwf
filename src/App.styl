@@ -1,0 +1,442 @@
+body
+  overflow hidden
+  
+  
+.control-button
+  position: fixed
+  right: 5%
+  bottom: 45px
+  z-index: 103
+
+.el-popover
+  .el-tabs__content
+    overflow-y scroll
+    max-height 350px
+
+.menu-control-button
+  position absolute
+  left -16px
+  top 185px
+  z-index 101
+  box-shadow 0px 1px 2px rgba(0, 0, 0, 0.38)
+.menu-class
+  background rgba(255, 255, 255, 0.73)
+  position absolute
+  z-index 103
+  border-right 1px solid rgba(0, 0, 0, 0.09)
+  .menu-control-button
+    position absolute
+    left 125px
+    top 165px
+    z-index 101
+    box-shadow 0px 1px 2px rgba(0, 0, 0, 0.38)
+  .menu-mask
+    width 500%
+    height 150%
+    position absolute
+    background rgba(0, 0, 0, 0.23)
+  img
+    display none
+
+#app
+  font-family: 'Avenir', Helvetica, Arial, sans-serif
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  color: #2c3e50
+  width: 100%
+  height: 100%
+  overflow hidden
+  background #ccc
+  background: -moz-linear-gradient(top, #fff 0%, #78baff 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff), color-stop(100%,#78baff));
+  background: -webkit-linear-gradient(top, #fff 0%,#78baff 100%);
+  background: -o-linear-gradient(top, #fff 0%,#78baff 100%);
+  background: -ms-linear-gradient(top, #fff 0%,#78baff 100%);
+  background: linear-gradient(to bottom, #fff 0%,#78baff 100%);
+  .main-content
+    position relative
+    height auto
+    .el-col
+      .el-menu
+        padding-right 5px
+        background rgba(255, 255, 255, 0.2)
+        border-radius 10px
+        padding-top 5px
+        padding-bottom 5px
+        border none
+        .vlink
+          text-decoration: none
+          font-size: 2em
+          color:black
+          .el-menu-item
+            padding 0px 0px 0px 12px !important
+            font-size:2em
+            height 50px
+            line-height 40px
+            border-radius 25px
+            margin 0px 0px 2px 5px
+            .title
+              font-size 0.3em
+          .el-submenu__title
+            line-height 50px
+        .router-link-exact-active
+          .el-menu-item
+            .title
+              font-size 0.35em
+      >img
+        width 48%
+        height auto
+        margin 1em
+  .login
+    margin-top: 200px
+
+.el-form-item__label
+  float left !important
+.loginPic
+  display block
+  width 135px
+  margin 40px auto 10px
+.loginIn
+  margin 20px auto 40px
+  width 250px
+  background white
+  box-shadow 1px 1px 25px rgba(0, 0, 0, 0.28)
+  padding 20px
+  border-radius 10px
+
+li
+  list-style none
+
+.person-close
+  position absolute
+  font-size 33px
+  .transition-box
+    margin-bottom: 10px
+    width: 10.5em !important
+    height: 7em !important
+    border-radius: 4px
+    text-align: center
+    color: #fff
+    padding: 10px 5px
+    box-sizing: border-box
+    margin-right: 20px
+    font-size 12px
+    p,span
+      margin 2px 0
+      font-size 10px
+  top 18px
+  right 47px
+  z-index 3
+
+td
+  padding 5px 0px !important
+
+.person-close1
+  right 156px !important
+  top -34px !important
+
+.el-menu-item [class^=el-icon-]
+  margin-right -5px
+
+.cell
+  text-align left
+
+.el-notification
+  width 300px
+
+.service-log
+  position: fixed;
+  font-size: 33px;
+  top: 9px;
+  right: 87px;
+  z-index: 3;
+
+.finance,.goods,.setting,.coupon,.member,.order,.person,.purchase,.setting,.table,.test,.xwffunction,.xwfer,.xwfcustom
+  margin:0 3% 0
+  height:96%
+
+.el-tabs__nav
+  margin-left 10%
+
+.serviceList
+  display flex
+  justify-content space-between
+  margin 5px 0px
+
+.el-col
+  .el-tabs__content
+    height 777px
+    padding 15px
+    background white
+    border-radius 10px
+    box-shadow 1px 1px 25px rgba(0, 0, 0, 0.28)
+
+.el-select
+  display inline-block
+
+.el-table--fit
+  height 725px
+  border-radius: 10px;
+
+.el-tabs__item
+  font-size 19px
+
+.el-tabs__nav-scroll
+  margin-top 20px
+
+.el-tab-pane[data-v-60204f04]
+  width 50%
+
+@media screen and (max-width: 1200px)
+  
+  .setting,.tables,.xwfcustom,.xwfer,.xwffunction,.coupon,.member,.finance,.goods,.order
+    >.el-tabs
+      .el-tabs__content
+        height 570px
+        overflow-y scroll
+
+  .login
+    margin-top: 100px !important
+
+  .table-container
+    height: 20em
+  
+
+@media screen and (max-width: 900px)
+  th
+    padding 0px !important
+  
+  .service-log
+    top -6px
+
+  .el-popover
+    .el-tabs__content
+      max-height 200px
+
+  .setting,.tables,.xwfcustom,.xwfer,.xwffunction,.coupon,.member,.finance,.goods,.order
+    >.el-tabs
+      .el-tabs__content
+        height 500px
+        overflow-y scroll
+
+  .transition-box
+    margin-bottom: 10px
+    width: 12.5em !important
+    height: 7em !important
+    border-radius: 4px
+    text-align: center
+    box-sizing: border-box
+    margin-right: 20px
+    font-size 12px
+    .box-header
+      height 23% !important
+    p,span
+      margin 2px 0
+      font-size 10px !important
+
+
+  .el-tabs__item
+    font-size 14px
+
+  .el-tabs__nav-scroll
+    margin-top 0px
+
+  .el-tab-pane[data-v-60204f04]
+    width 100%
+
+  .person-close
+    position absolute
+    font-size 20px
+    color #f6606f
+    top 11px
+    right 22px
+    z-index 3
+
+  .person-close1
+    right 74px !important
+    top 8px !important
+
+  .login
+    margin-top: 0px !important
+
+  .goodse
+    top: 15px !important
+    left: 34px !important
+
+  .tableButtonGroup1
+    bottom: 10px !important
+
+
+@media screen and (max-width: 825px)
+  
+  .menu-control-button
+    top 170px
+
+  .menu-class
+    .menu-control-button
+      top 165px
+      left 145px
+
+  .setting,.tables,.xwfcustom,.xwfer,.xwffunction,.coupon,.member,.finance,.goods,.order
+    >.el-tabs
+      .el-tabs__content
+        height 260px
+        overflow-y scroll
+
+
+  .control-button
+    bottom: 10px
+
+  .el-table td, .el-table th
+    padding 0px !important
+
+  .transition-box
+    margin-bottom: 10px
+    width: 12.5em !important
+    height: 7em !important
+    border-radius: 4px
+    text-align: center
+    box-sizing: border-box
+    margin-right: 20px
+    font-size 12px !important
+    .box-header
+      height 23% !important
+    p,span
+      margin 2px 0
+      font-size 10px !important
+
+  .goodse
+    top: 15px !important
+    left: 34px !important
+
+  .tableButtonGroup1
+    bottom: 10px !important
+@media screen and (max-width: 737px)
+  
+  .setting,.tables,.xwfcustom,.xwfer,.xwffunction,.coupon,.member,.finance,.goods,.order
+    >.el-tabs
+      .el-tabs__content
+        height 300px
+        overflow-y scroll
+
+  .menu-class .menu-control-button
+    top: 165px;
+    left: 130px;
+
+  .goodse
+    top: 0px !important
+    left: 0px !important
+
+  .tableButtonGroup[data-v-19dca008]
+    top 10px
+
+
+  .singleContainer[data-v-19dca008]
+    height auto
+
+  .tables
+    .tableButtonGroup1[data-v-19dca008]
+      height auto !important
+
+  .tableButtonGroup1
+    bottom: 2px !important
+
+  .transition-box
+    margin-bottom: 10px
+    width: 12.5em !important
+    height: 7em !important
+    border-radius: 4px
+    text-align: center
+    box-sizing: border-box
+    margin-right: 20px
+    font-size 12px !important
+    .box-header
+      height 23% !important
+    p,span
+      margin 2px 0
+      font-size 10px !important
+
+
+  .title
+    font-size 0.256em !important
+
+
+@media screen and (max-width: 668px)
+  .setting,.tables,.xwfcustom,.xwfer,.xwffunction,.coupon,.member,.finance,.goods,.order
+    >.el-tabs
+      .el-tabs__content
+        height 270px
+        overflow-y scroll
+
+  .menu-class .menu-control-button
+    top: 165px;
+    left: 125px;
+  
+  .filterBtn
+    width auto
+    position absolute
+    padding 10px
+    right 0px
+    border-radius 10px
+    background rgba(255, 255, 255, 0.8)
+    .el-button
+      float right
+    .el-radio-group
+      float right
+      
+
+  .transition-box
+    margin-bottom: 10px
+    width: 10.5em !important
+    height: 7em !important
+    border-radius: 4px
+    text-align: center
+    color #f6606f
+    box-sizing: border-box
+    margin-right: 20px
+    font-size 12px
+    .box-header
+      height 23% !important
+    p,span
+      margin 2px 0
+      font-size 10px
+
+
+  .el-menu-item [class^=el-icon-]
+    margin-right -12px
+
+
+  .el-table th>.cell
+    text-align center !important
+
+  .el-button.is-circle
+    padding 7px
+
+  .el-button-group
+    &:first-child
+      margin 0px auto !important
+
+  .bnt-group
+    width 100%
+    position fixed
+    bottom 2%
+    z-index 15
+    .el-button-group
+      margin-bottom 3% !important
+      margin-left 58% !important
+    .block,.small-block
+      width 73%
+
+
+.el-table-filter__content
+  .el-table-filter__checkbox-group
+    display flex
+    flex-wrap wrap
+    max-width 400px
+.el-table-filter__bottom
+  text-align right
+
+.notify
+  width 140px
+
+
