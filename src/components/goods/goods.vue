@@ -173,18 +173,18 @@
                 <!--prop="bannerStatus"-->
                 <!--label="banner状态">-->
               <!--</el-table-column>-->
-              <el-table-column
-                v-if="changeSortShow === 0"
-                fixed="right"
-                label="排序"
-                width="110">
-                <template slot-scope="scope">
-                  <el-button-group>
-                    <el-button size="mini" icon="el-icon-sort-up" @click="sortUp"></el-button>
-                    <el-button size="mini" icon="el-icon-sort-down"  @click="sortDown"></el-button>
-                  </el-button-group>
-                </template>
-              </el-table-column>
+              <!--<el-table-column-->
+                <!--v-if="changeSortShow === 0"-->
+                <!--fixed="right"-->
+                <!--label="排序"-->
+                <!--width="110">-->
+                <!--<template slot-scope="scope">-->
+                  <!--<el-button-group>-->
+                    <!--<el-button size="mini" icon="el-icon-sort-up" @click="sortUp"></el-button>-->
+                    <!--<el-button size="mini" icon="el-icon-sort-down"  @click="sortDown"></el-button>-->
+                  <!--</el-button-group>-->
+                <!--</template>-->
+              <!--</el-table-column>-->
             </el-table>
             <el-button size="large" type="primary" icon="el-icon-plus" @click="plusMethodsThis" class="control-button">添加菜品</el-button>
           </template>
@@ -1045,6 +1045,7 @@ export default {
       inputValue2: '',
       inputVisible3: false,
       inputValue3: '',
+      screenHeight: document.body.clientHeight,
       printValue:'选项1',
       toDynamicTags3:[],
       value4: '',
@@ -1188,6 +1189,13 @@ export default {
     }
     this._pullPopularizeTag()
     this._pullPrinter()
+    if (200 < this.screenHeight&& this.screenHeight < 380) {
+      this.$store.state.tableHeight = 260
+    }if (380 < this.screenHeight && this.screenHeight < 770){
+      this.$store.state.tableHeight = 555
+    }if (770 < this.screenHeight){
+      this.$store.state.tableHeight = 750
+    }
   },
   methods: {
     disableDishes(row){

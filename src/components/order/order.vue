@@ -174,6 +174,7 @@
     data:() => ({
       currentPage1:5,
       activeName: 'first',
+      screenHeight: document.body.clientHeight,
       userOrderTable:[],
       filterTableArr:[],
       loading: true,
@@ -354,6 +355,13 @@
     created() {
       this._pullUserOrder()
       this._pullTable()
+      if (200 < this.screenHeight&& this.screenHeight < 380) {
+        this.$store.state.tableHeight = 260
+      }if (380 < this.screenHeight && this.screenHeight < 770){
+        this.$store.state.tableHeight = 555
+      }if (770 < this.screenHeight){
+        this.$store.state.tableHeight = 750
+      }
     },
   }
 </script>

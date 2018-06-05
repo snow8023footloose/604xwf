@@ -148,6 +148,7 @@ export default {
     showFormMember:false,
     loading:false,
     memberTable:[],
+    screenHeight: document.body.clientHeight,
     memberForm:{},
     formLabelWidth:'80px',
     memberSetting:{},
@@ -275,7 +276,13 @@ export default {
   created(){
     this._pullMemberSetting()
     this._pullMember()
-    console.log(this.$store.state.tableHeight,'member');
+    if (200 < this.screenHeight&& this.screenHeight < 380) {
+      this.$store.state.tableHeight = 260
+    }if (380 < this.screenHeight && this.screenHeight < 770){
+      this.$store.state.tableHeight = 555
+    }if (770 < this.screenHeight){
+      this.$store.state.tableHeight = 750
+    }
   }
 
 }

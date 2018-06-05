@@ -608,6 +608,7 @@ export default {
       bindAliShowLoading:false,
       aliRecode:'',
       bindWechatShowVisible:false,
+      screenHeight: document.body.clientHeight,
       bindWechatShowLoading:false,
       WechatRecode:'',
       showIndexBg:false,
@@ -629,6 +630,13 @@ export default {
     this._pullPrinterTemplate()
     this._pullSetting()
     this._pullBindAccount()
+    if (200 < this.screenHeight&& this.screenHeight < 380) {
+      this.$store.state.tableHeight = 260
+    }if (380 < this.screenHeight && this.screenHeight < 770){
+      this.$store.state.tableHeight = 555
+    }if (770 < this.screenHeight){
+      this.$store.state.tableHeight = 750
+    }
   },
   methods:{
     _pullBindAccount(){
@@ -966,7 +974,7 @@ export default {
     position fixed
     width 618px
     right 94px
-    bottom 25px
+    bottom 83px
 
 
   .el-tab-pane[data-v-60204f04]

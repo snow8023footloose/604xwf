@@ -414,6 +414,7 @@
       rechargeData:{},
       discountCoupon:[],
       showFormCoupon:false,
+      screenHeight: document.body.clientHeight,
       saveCoupon: false,
       couponForm:{},
       couponSetting: {},
@@ -424,6 +425,13 @@
       this._pullDiscountCoupon()
       this._pullCouponSetting()
       this._pullCouponType()
+      if (200 < this.screenHeight&& this.screenHeight < 380) {
+        this.$store.state.tableHeight = 260
+      }if (380 < this.screenHeight && this.screenHeight < 770){
+        this.$store.state.tableHeight = 555
+      }if (770 < this.screenHeight){
+        this.$store.state.tableHeight = 750
+      }
     },
     methods: {
       _pullCouponType(){

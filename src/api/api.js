@@ -96,8 +96,6 @@ export  function urlColletion() {
     // 排序
     exchangeZindex1: BURL + '/dishes/exchangeZindex',
 
-
-
     //分类
     dishesCategory1: BURL + '/dishesCategory/add',
     dishesCategory2: BURL + '/dishesCategory/complexPageQuery',
@@ -126,6 +124,10 @@ export  function urlColletion() {
     spec2: BURL + '/restaurantSpec/complexPageQuery',
     spec3: BURL + '/restaurantSpec/delete',
     spec4: BURL + '/restaurantSpec/update',
+
+
+    //销量
+    getDishesSaleData: BURL + '/dishes/getDishesSaleData',
 
     //属性
     attr1: BURL + '/restaurantSpec/attr/add',

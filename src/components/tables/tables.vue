@@ -143,7 +143,8 @@
             <transition name="el-zoom-in-left" v-if="countTable === 0">
               <div v-show="showTable" class="transition-box">
                 <div class="box-content">
-                  <p class="pre-clear">请操作下方控件</p>
+                  <p style="font-size: 36px;color: rgba(0,0,0,0.2);text-align: center;font-weight: bolder">空</p>
+                  <p class="pre-clear">用下方控件</p>
                   <p class="pre-clear">筛选餐桌</p>
                 </div>
               </div>
@@ -590,6 +591,7 @@ export default {
     tid:0,
     printerWidth: 600,
     tableStatus:'not-payed',
+    screenWidth: document.body.clientWidth,
     printerName:'',
     printerNum:1,
     printerTemplate:'',
@@ -1359,7 +1361,8 @@ export default {
       })
     },
     selectTable(item,index){
-      if(this.$store.state.screenWidth < 1000){
+      console.log(this.screenWidth);
+      if(this.screenWidth < 1000){
         return
       }
 

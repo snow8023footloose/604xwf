@@ -65,7 +65,9 @@ const store = new Vuex.Store({
     tableStatus:{},
     orderStatus:{},
     serviceStatus:{},
-    tableHeight:550
+    tableHeight:550,
+    screenWidth:0,
+    screenHeight:0,
   },
   getters: {
     doneTodos: state => {
