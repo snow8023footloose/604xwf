@@ -291,6 +291,15 @@
             auto-complete="off"
             placeholder="请输入价格"></el-input>
         </el-form-item>
+        <el-form-item label="业务类型">
+          <el-select
+            style="display: inline-block;margin: 0px 2px"
+            v-model="couponForm.buzType"
+            placeholder="请选择业务类型">
+            <el-option label="回头券" value="head-back"></el-option>
+            <el-option label="新人券" value="new-give"></el-option>
+          </el-select>
+        </el-form-item>
         <el-form-item label="限制类型">
           <el-select
             style="display: inline-block;margin: 0px 2px"
@@ -364,21 +373,21 @@
             style="display: inline-block;margin: 0px 2px"
             v-model="couponForm.validType"
             placeholder="选择使用期限类型">
-            <el-option label="到期时间" value="dot"></el-option>
-            <el-option label="时间段" value="long"></el-option>
+            <el-option label="到期时间" value="time"></el-option>
+            <el-option label="时间段" value="day"></el-option>
           </el-select>
           <el-input
             style="width: 220px;margin: 5px 0px"
             v-model="couponForm.validDay"
             placeholder="输入天"
-            v-if="couponForm.validType === 'long'">
+            v-if="couponForm.validType === 'day'">
           </el-input>
           <el-date-picker
             style="width: 220px;margin: 5px 0px"
-            v-model="couponForm.validTime"
+            v-model="couponForm.validTimeStr"
             type="date"
             value-format="yyyy-MM-dd HH:mm:ss"
-            v-if="couponForm.validType === 'dot'"
+            v-if="couponForm.validType === 'time'"
             placeholder="选择日期">
           </el-date-picker>
         </el-form-item>

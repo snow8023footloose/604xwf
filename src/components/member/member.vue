@@ -166,7 +166,6 @@ export default {
         let response = res.data.data
 
         for(let i=0; i<response.length; i++){
-          console.log(response[i]);
           msg +='<p><span>'+response[i].discountCoupon.name +'</span>'+ '<span style="margin-left: 20px">持有数量：'+response[i].num+'</span>'+'</p>'
         }
         this.$alert(msg, '优惠信息', {
