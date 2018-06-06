@@ -331,8 +331,8 @@
     },
     pullService(msg) {
       console.log(msg);
-      let audio = document.getElementById('orderAudio')
-      audio.play();
+      // let audio = document.getElementById('orderAudio')
+      // audio.play();
       this.$notify({
         title: msg.tableInfo + "-" + msg.name  ,
         offset: 100,

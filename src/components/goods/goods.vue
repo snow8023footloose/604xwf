@@ -973,6 +973,27 @@ export default {
         }, {
           id: 3,
           name: '斤'
+        }, {
+          id: 4,
+          name: '条'
+        }, {
+          id: 5,
+          name: '只'
+        },{
+          id: 6,
+          name: '杯'
+        },{
+          id: 7,
+          name: '碗'
+        },{
+          id: 8,
+          name: '串'
+        },{
+          id: 9,
+          name: '盒'
+        },{
+          id: 10,
+          name: '手'
         }
       ],
       PreTag:[],

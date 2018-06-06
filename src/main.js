@@ -68,7 +68,6 @@ let app = new Vue({
   template: '<App/>',
   render: h => h(App)
 })
-console.log(app);
 
 function handService(data) {
   app.$store.state.serviceStatus = data
