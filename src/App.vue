@@ -472,10 +472,10 @@
     }
   },
   created() {
-    if (localStorage.rid){
-      this.ruleForm2.username = 17507338186
-      this.ruleForm2.password = 17507338186
-    }
+    // if (localStorage.rid){
+    //   this.ruleForm2.username = 17507338186
+    //   this.ruleForm2.password = 17507338186
+    // }
 
     this.fitSize()
   },
