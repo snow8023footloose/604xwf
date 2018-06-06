@@ -90,8 +90,10 @@ export  function urlColletion() {
     //菜品
     dishes1: BURL + '/dishes/add',
     dishes2: BURL + '/dishes/complexPageQueryWithExtraData',
+
     dishes3: BURL + '/dishes/delete',
     dishes4: BURL + '/dishes/update',
+    dishescomplexPageQuery: BURL + '/dishes/complexPageQuery',
 
     // 排序
     exchangeZindex1: BURL + '/dishes/exchangeZindex',

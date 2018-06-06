@@ -1346,7 +1346,7 @@ export default {
         }
       ]
       console.log(Data,'传递加载菜品数据');
-      this.$request(this.url.dishes2,'json',Data).then((res)=>{
+      this.$request(this.url.dishescomplexPageQuery,'json',Data).then((res)=>{
         let response = res.data.data
         this.dishesDataTable = response
         // console.log(response);
