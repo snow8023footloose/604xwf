@@ -1180,7 +1180,7 @@ export default {
     }
   },
   created() {
-    this.dishesDataTable = this.$store.state.dishesDataTable
+    this._pullDishes()
     this._pullCategory()
     this._pullTags()
     this._pullSpec()
@@ -1337,13 +1337,15 @@ export default {
       })
     },
     _pullDishes(){
+
       var Data = [
         {
-          feild:'status',
-          value:'123',
-          joinType:'ne'
+          feild:'',
+          value:'',
+          joinType:''
         }
       ]
+      console.log(Data,'传递加载菜品数据');
       this.$request(this.url.dishes2,'json',Data).then((res)=>{
         let response = res.data.data
         this.dishesDataTable = response

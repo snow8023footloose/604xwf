@@ -39,19 +39,19 @@
         v-model="showServiceMsg">
         <el-tabs v-model="activeService">
           <el-tab-pane label="未处理" name="first">
-            <div v-for="item in 20" class="serviceList">
-              <span>餐桌：{{item}}</span>
-              <span>酒水</span>
+            <div v-for="item in serviceLog" class="serviceList" v-if="item.status === 'enable'">
+              <span>餐桌：{{item.tableInfo}}</span>
+              <span>{{item.name}}</span>
               <span>
-                <el-button size="mini" type="text" @click="showServiceMsg = false">删除</el-button>
-                <el-button type="primary" size="mini" @click="showServiceMsg = false">已处理</el-button>
+                <el-button size="mini" type="text" @click="deleteService(item.id)">删除</el-button>
+                <el-button type="primary" size="mini" @click="dealService(item.id)">处理</el-button>
               </span>
             </div>
           </el-tab-pane>
           <el-tab-pane label="已处理" name="second">已处理</el-tab-pane>
         </el-tabs>
         <div class="service-log" slot="reference">
-          <el-button size="mini" type="primary" icon="el-icon-bell" round>服务推送</el-button>
+          <el-button size="mini" type="primary" icon="el-icon-bell" @click="_pullServiceLog" round>服务推送</el-button>
         </div>
       </el-popover>
       <i style="color: #ff525b" class="el-icon-circle-close person-close" @click="loginOut"></i>
@@ -70,7 +70,6 @@
               <span slot="title" class="title">餐桌收银</span>
             </el-menu-item>
           </router-link>
-
           <router-link :to="{path:'/manager/xwfs/goods'}" class="vlink">
             <el-menu-item index="2">
               <svg class="icon" style="width: 25px; height: 24px;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3916">
@@ -173,6 +172,7 @@
       loginShow: true,
       menuShow: true,
       menuClass:'menu',
+      serviceLog:[],
       ruleForm2: {
         username: '',
         password: '',
@@ -191,6 +191,7 @@
     };
   },
   watch:{
+
     watchOrder(val){
       this._pullSetting()
       if(this.settingForm.serviceRemindType){
@@ -280,40 +281,66 @@
     }
   },
   methods: {
-    _pullSetting(){
-      this.$request(this.url.restaurantSetting,'json',[]).then((res)=>{
-        this.settingForm = res.data.data[0]
+    deleteService(val){
+      console.log('1');
+      console.log(val);
+    },
+    dealService(val){
+      console.log('1');
+      console.log(val);``
+    },
+
+
+    _pullServiceLog(){
+      var startTimeC = new Date().getTime()
+      console.log(startTimeC);
+      console.log(startTimeC - 86400000);
+      console.log(this.TimetoString(startTimeC-86400000));
+      this.$request(this.url.restaurantServiceComplexPageQuery,'json',[
+        {
+          feild:'createTime',
+          value: this.TimetoString(startTimeC-86400000),
+          joinType:'gt'
+        },
+        {
+          feild:'createTime',
+          value: this.TimetoString(startTimeC),
+          joinType:'lt'
+        }
+      ]).then((res)=>{
+        this.serviceLog = res.data.data
+        console.log(res.data.data);
       }).catch((err)=>{
         console.log(err);
       })
     },
-    _pullPrinter(){
-      this.$request(this.url.printerComplexPageQuery,'json',[]).then((res)=>{
-        this.printerTable = res.data.data
-      }).catch((err)=>{
-        console.log(err);
-      })
-    },
-    _pullPrinterTemplate(){
-      this.$request(this.url.printerTemplateComplexPageQuery,'json',[{
-        feild:"status",
-        value:"enable",
-        joinType:"eq"
-      }]).then((res)=>{
-        this.printerTemplateTable = res.data.data
-      }).catch((err)=>{
-        console.log(err);
-      })
+    TimetoString(inputTime){
+      var date = new Date(inputTime);
+      var y = date.getFullYear();
+      var m = date.getMonth() + 1;
+      m = m < 10 ? ('0' + m) : m;
+      var d = date.getDate();
+      d = d < 10 ? ('0' + d) : d;
+      var h = date.getHours();
+      h = h < 10 ? ('0' + h) : h;
+      var minute = date.getMinutes();
+      var second = date.getSeconds();
+      minute = minute < 10 ? ('0' + minute) : minute;
+      second = second < 10 ? ('0' + second) : second;
+      return y + '-' + m + '-' + d+' '+h+':'+minute+':'+second;
     },
     pullService(msg) {
+      console.log(msg);
+      let audio = document.getElementById('orderAudio')
+      audio.play();
       this.$notify({
-        title: '茶水',
+        title: msg.tableInfo + "-" + msg.name  ,
         offset: 100,
         onClick:function () {
           alert('处理中')
         },
         message:'点击处理',
-        duration: 3500,
+        duration: 6000,
         iconClass:'el-icon-bell'
       });
     },
@@ -422,23 +449,7 @@
         });
       });
     },
-    _pullDishes(){
-      var Data = [
-        {
-          feild:'status',
-          value:'123',
-          joinType:'ne'
-        }
-      ]
-      this.$request(this.url.dishes2,'json',Data).then((res)=>{
-        let response = res.data.data
-        this.dishesDataTable = response
-        this.$store.state.dishesDataTable = response
-        // console.log(response);
-      }).catch((err)=>{
-        console.log(err);
-      })
-    },
+
     resetForm(formName) {
       this.ruleForm2 = {
         username: '',
@@ -461,13 +472,9 @@
     }
   },
   created() {
-    this._pullSetting()
-    this._pullDishes()
-    this._pullPrinter()
-    this._pullPrinterTemplate()
     if (localStorage.rid){
-      this.ruleForm2.username = 17375636967
-      this.ruleForm2.password = 17375636967
+      this.ruleForm2.username = 17507338186
+      this.ruleForm2.password = 17507338186
     }
 
     this.fitSize()
