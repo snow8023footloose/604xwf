@@ -1398,7 +1398,7 @@ export default {
           this.scrollOnce= 1
         }
         loading.close();
-      }, 1500);
+      }, 3000);
       this.tableShow = 1
       this.tableTitle = this.tableForm.num
       const loading = this.$loading({

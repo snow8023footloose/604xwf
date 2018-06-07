@@ -275,9 +275,9 @@ export default {
     this._pullMember()
     if (200 < this.screenHeight&& this.screenHeight < 380) {
       this.$store.state.tableHeight = 260
-    }if (380 < this.screenHeight && this.screenHeight < 770){
-      this.$store.state.tableHeight = 555
-    }if (770 < this.screenHeight){
+    }if (380 < this.screenHeight && this.screenHeight < 810){
+      this.$store.state.tableHeight = 460
+    }if (810 < this.screenHeight){
       this.$store.state.tableHeight = 750
     }
   }

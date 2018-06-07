@@ -38,17 +38,28 @@
         width="350"
         v-model="showServiceMsg">
         <el-tabs v-model="activeService">
-          <el-tab-pane label="未处理" name="first">
+          <el-tab-pane :label="'未处理'" name="first">
             <div v-for="item in serviceLog" class="serviceList" v-if="item.status === 'enable'">
               <span>餐桌：{{item.tableInfo}}</span>
+              <span>{{item.createTime.substring(10,16)}}</span>
               <span>{{item.name}}</span>
               <span>
                 <el-button size="mini" type="text" @click="deleteService(item.id)">删除</el-button>
-                <el-button type="primary" size="mini" @click="dealService(item.id)">处理</el-button>
+                <el-button type="primary" size="mini" @click="dealService(item)">处理</el-button>
               </span>
             </div>
           </el-tab-pane>
-          <el-tab-pane label="已处理" name="second">已处理</el-tab-pane>
+          <el-tab-pane :label="'已处理'" name="second">
+            <div v-for="item in serviceLog" class="serviceList" v-if="item.status === 'handle'">
+              <span>餐桌：{{item.tableInfo}}</span>
+              <span>{{item.createTime.substring(10,16)}}</span>
+              <span>{{item.name}}</span>
+              <span>
+                <el-button size="mini" type="text" @click="deleteService(item.id)">删除</el-button>
+              </span>
+            </div>
+
+          </el-tab-pane>
         </el-tabs>
         <div class="service-log" slot="reference">
           <el-button size="mini" type="primary" icon="el-icon-bell" @click="_pullServiceLog" round>服务推送</el-button>
@@ -284,10 +295,22 @@
     deleteService(val){
       console.log('1');
       console.log(val);
+
+      this.$request(this.url.restaurantServiceDelete,'form',{
+        id:val
+      }).then((res)=>{
+        console.log(res);
+        this._pullServiceLog()
+      })
     },
     dealService(val){
+      val.status = 'handle'
       console.log('1');
-      console.log(val);``
+      console.log(val);
+      this.$request(this.url.restaurantServiceUpdate,'json', val ).then((res)=>{
+        console.log(res);
+        this._pullServiceLog()
+      })
     },
 
 
@@ -331,15 +354,25 @@
     },
     pullService(msg) {
       console.log(msg);
+      let _this =this
       // let audio = document.getElementById('orderAudio')
       // audio.play();
       this.$notify({
         title: msg.tableInfo + "-" + msg.name  ,
         offset: 100,
         onClick:function () {
-          alert('处理中')
+          // msg.status = 'handle'
+          // this.$request(this.url.restaurantServiceUpdate,'json', msg ).then((res)=>{
+          //   console.log(res);
+          //   this.$message({
+          //     duration: 700,
+          //     type: 'success',
+          //     message: '提交成功！'
+          //   });
+          //   _this._pullServiceLog()
+          // })
         },
-        message:'点击处理',
+        message:'请到服务推送中处理',
         duration: 6000,
         iconClass:'el-icon-bell'
       });
@@ -476,6 +509,8 @@
     //   this.ruleForm2.username = 17507338186
     //   this.ruleForm2.password = 17507338186
     // }
+    // alert(this.screenWidth)
+    // alert(this.screenHeight)
 
     this.fitSize()
   },
@@ -483,9 +518,9 @@
     this.$store.state.screenHeight = this.screenHeight
     if (200 < this.screenHeight&& this.screenHeight < 380) {
       this.$store.state.tableHeight = 260
-    }if (380 < this.screenHeight && this.screenHeight < 770){
+    }if (380 < this.screenHeight && this.screenHeight < 810){
       this.$store.state.tableHeight = 555
-    }if (770 < this.screenHeight){
+    }if (810 < this.screenHeight){
       this.$store.state.tableHeight = 750
     }
   }

@@ -283,9 +283,9 @@ export default {
     }
     if (200 < this.$store.state.screenWidth&& this.$store.state.screenWidth < 380) {
       this.$store.state.tableHeight = 260
-    }if (380 < this.$store.state.screenWidth && this.$store.state.screenWidth < 770){
+    }if (380 < this.$store.state.screenWidth && this.$store.state.screenWidth < 810){
       this.$store.state.tableHeight = 555
-    }if (770 < this.$store.state.screenWidth){
+    }if (810 < this.$store.state.screenWidth){
       this.$store.state.tableHeight = 750
     }
     this.filterFun()
