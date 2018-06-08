@@ -11,6 +11,52 @@
             style="width: 100%"
             :height="$store.state.tableHeight"
           >
+            <el-table-column type="expand">
+              <template slot-scope="props">
+                <el-form label-position="left" inline class="demo-table-expand">
+                  <el-form-item label="会员名称">
+                    <span>{{ props.row.user.nickname }}</span>
+                  </el-form-item>
+                  <el-form-item label="会员等级">
+                    <span>{{ props.row.level }}</span>
+                  </el-form-item>
+                  <el-form-item label="会员  ID">
+                    <span>{{ props.row.id }}</span>
+                  </el-form-item>
+                  <el-form-item label="享受优惠">
+                    <span>代金券 优惠券 人头券</span>
+                  </el-form-item>
+                  <el-form-item label="消费详情">
+                  </el-form-item>
+                  <el-form-item label="">
+                  </el-form-item>
+                  <el-form-item label="时间：2018／06／06">
+                    …………… 消费 ¥234.00
+                  </el-form-item>
+                  <el-form-item label="">
+                  </el-form-item>
+                  <el-form-item label="时间：2018／06／01">
+                    …………… 消费 ¥134.00
+                  </el-form-item>
+                  <el-form-item label="">
+                  </el-form-item>
+                  <el-form-item label="时间：2018／05／26">
+                    …………… 消费 ¥204.00
+                  </el-form-item>
+                  <el-form-item label="">
+                  </el-form-item>
+                  <el-form-item label="时间：2018／05／27">
+                    …………… 消费 ¥2234.00
+                  </el-form-item>
+                  <el-form-item label="">
+                  </el-form-item>
+                  <el-form-item label="时间：2018／05／06">
+                    …………… 消费 ¥264.00
+                  </el-form-item>
+
+                </el-form>
+              </template>
+            </el-table-column>
             <el-table-column
               sortable
               fixed="left"
@@ -18,12 +64,12 @@
               label="会员名"
               width="120">
             </el-table-column>
-            <el-table-column
-              sortable
-              prop="level"
-              label="等级"
-              width="80">
-            </el-table-column>
+            <!--<el-table-column-->
+              <!--sortable-->
+              <!--prop="level"-->
+              <!--label="等级"-->
+              <!--width="80">-->
+            <!--</el-table-column>-->
             <el-table-column
               sortable
               width="120"
@@ -37,14 +83,25 @@
             </el-table-column>
             <el-table-column
               sortable
-              prop="user.gender"
-              label="性别"
-              width="80">
+              prop="level"
+              label="消费详情"
+              width="100">
               <template slot-scope="scope">
-                <span v-if="scope.row.user.gender === 'male'">男</span>
-                <span v-if="scope.row.user.gender === 'female'">女</span>
+                <el-button
+                  size="mini"
+                  @click="showCouponMsg(scope.$index, scope.row)">查看</el-button>
               </template>
             </el-table-column>
+            <!--<el-table-column-->
+              <!--sortable-->
+              <!--prop="user.gender"-->
+              <!--label="性别"-->
+              <!--width="80">-->
+              <!--<template slot-scope="scope">-->
+                <!--<span v-if="scope.row.user.gender === 'male'">男</span>-->
+                <!--<span v-if="scope.row.user.gender === 'female'">女</span>-->
+              <!--</template>-->
+            <!--</el-table-column>-->
             <el-table-column
               sortable
               prop="sale"
@@ -60,7 +117,7 @@
               sortable
               prop="createTime"
               label="创建时间"
-              width="170">
+              width="190">
             </el-table-column>
             <el-table-column
               fixed="right"
@@ -164,7 +221,10 @@ export default {
       let msg = ''
       this.$request(this.url.userCouponComplexPageQuery,'json',data).then((res)=>{
         let response = res.data.data
-
+        if(!response){
+          alert('无信息')
+          return
+        }
         for(let i=0; i<response.length; i++){
           msg +='<p><span>'+response[i].discountCoupon.name +'</span>'+ '<span style="margin-left: 20px">持有数量：'+response[i].num+'</span>'+'</p>'
         }
@@ -285,5 +345,21 @@ export default {
 }
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
+
+  .demo-table-expand
+    font-size: 0
+
+
+
+  .demo-table-expand .el-form-item
+    margin-left 10px
+    margin-right: 0
+    margin-bottom: 0
+    width: 45%
+    .el-form-item__label
+      width: 90px
+      color: #409EFF
+      margin-left 10px !important
+
 
 </style>

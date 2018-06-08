@@ -2468,6 +2468,7 @@ export default {
       this.startTimePre = '请选择开始时间'
       this.endTimePre = '请选择结束时间'
       this.generatTable = false
+      this.generateSkuDate = []
       this.dynamicTagsOld =[]
       this.valueOfTagsPopularize1 = []
       this.showFormGoodsPlus = !this.showFormGoodsPlus
