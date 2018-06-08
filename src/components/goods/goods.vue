@@ -334,6 +334,7 @@
     <el-dialog
       width="80%" title="标签编辑"
       :visible.sync="showFormTagEdit"
+
       ref="showTags">
       <el-form  :label-width="formLabelWidth" status-icon :model="toDynamicTags" :rules="rules" ref="DynamicTags">
         <el-form-item label="标签名" :label-width="formLabelWidth" prop="name">
@@ -559,9 +560,10 @@
     <!--添加菜品弹框-->
     <el-dialog
       top="3vh"
-      width="80%"
       title="增加菜品"
+      fullscreen="true"
       :visible.sync="showFormGoodsPlus"
+      close-on-click-modal="false"
       ref="showDishesData">
       <div class="matter2">
         <span
@@ -867,7 +869,7 @@
       </div>
       <div slot="footer" class="dialog-footer" v-if="addOrEdit === 1">
         <el-button @click="addDishesDelay('confirmDishesData','showDishesData')" icon="el-icon-time">暂不上架</el-button>
-        <el-button @click="showFormGoodsPlus = false">取 消</el-button>
+        <el-button @click="beforeClose">取 消</el-button>
         <el-button type="primary" @click="addDishes('confirmDishesData','showDishesData')">立即上架</el-button>
       </div>
     </el-dialog>
@@ -994,6 +996,30 @@ export default {
         },{
           id: 10,
           name: '手'
+        },{
+          id: 11,
+          name: '块'
+        },{
+          id: 12,
+          name: '个'
+        },{
+          id: 13,
+          name: '根'
+        },{
+          id: 14,
+          name: '包'
+        },{
+          id: 15,
+          name: '瓶'
+        },{
+          id: 16,
+          name: '位'
+        },{
+          id: 17,
+          name: '半斤'
+        },{
+          id: 18,
+          name: '扎'
         }
       ],
       PreTag:[],
@@ -1297,6 +1323,24 @@ export default {
       // console.log(event);
       event.target.style.background= 'rgba(64,158,255,.1)'
       event.target.style.border = '1px solid rgba(64,158,255,.6)'
+    },
+    beforeClose(){
+      this.$confirm('关闭信息将会丢失, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.showFormGoodsPlus = !this.showFormGoodsPlus
+        this.$message({
+          type: 'success',
+          message: '删除成功!'
+        });
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        });
+      });
     },
     priceBlurtest(row,index,event,type){
       event.target.style.background= 'rgba(146, 199, 253, 0.1)'

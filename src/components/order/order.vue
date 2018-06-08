@@ -408,5 +408,3 @@
     left 50%
     margin-left -150px
 </style>
-
-
