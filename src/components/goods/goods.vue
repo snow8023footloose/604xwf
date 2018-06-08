@@ -334,7 +334,6 @@
     <el-dialog
       width="80%" title="标签编辑"
       :visible.sync="showFormTagEdit"
-
       ref="showTags">
       <el-form  :label-width="formLabelWidth" status-icon :model="toDynamicTags" :rules="rules" ref="DynamicTags">
         <el-form-item label="标签名" :label-width="formLabelWidth" prop="name">
@@ -561,9 +560,9 @@
     <el-dialog
       top="3vh"
       title="增加菜品"
-      fullscreen="true"
+      :fullscreen="true"
       :visible.sync="showFormGoodsPlus"
-      close-on-click-modal="false"
+      :close-on-click-modal="false"
       ref="showDishesData">
       <div class="matter2">
         <span
@@ -1411,7 +1410,7 @@ export default {
         }
       ]
       console.log(Data,'传递加载菜品数据');
-      this.$request(this.url.dishescomplexPageQuery,'json',Data).then((res)=>{
+      this.$request(this.url.dishes2,'json',Data).then((res)=>{
         let response = res.data.data
         this.dishesDataTable = response
         // console.log(response);
@@ -1872,7 +1871,6 @@ export default {
     },
     // 修改菜品
     editDishes (row,index) {
-      console.log(row);
       this.valueOfSKU = []
       this.valueOfTags = []
       this.valueOfTagsPopularize = []
