@@ -1409,7 +1409,7 @@ export default {
           joinType:''
         }
       ]
-      console.log(Data,'传递加载菜品数据');
+      // console.log(Data,'传递加载菜品数据');
       this.$request(this.url.dishes2,'json',Data).then((res)=>{
         let response = res.data.data
         this.dishesDataTable = response

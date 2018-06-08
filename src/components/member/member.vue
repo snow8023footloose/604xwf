@@ -48,12 +48,6 @@
                   <el-form-item label="时间：2018／05／27">
                     …………… 消费 ¥2234.00
                   </el-form-item>
-                  <el-form-item label="">
-                  </el-form-item>
-                  <el-form-item label="时间：2018／05／06">
-                    …………… 消费 ¥264.00
-                  </el-form-item>
-
                 </el-form>
               </template>
             </el-table-column>
