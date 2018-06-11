@@ -1851,7 +1851,7 @@ export default {
             type: 'success',
             message: '数据提交成功!'
           });
-          this.dishesDataTable.splice(index,1)
+          this._pullDishes()
         }).catch((err)=>{
           this.$message({
             type: 'info',

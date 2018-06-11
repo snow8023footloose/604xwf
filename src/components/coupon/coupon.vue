@@ -309,35 +309,6 @@
             <el-option label="不启用" value="disable"></el-option>
           </el-select>
         </el-form-item>
-        <!--<el-form-item label="获得条件" inline>
-          <div style="display: flex;justify-content: space-between" >
-            <el-select
-              style="display: inline-block;margin: 0px 2px"
-              v-model="couponForm.condition1"
-              placeholder="顾客类型">
-              <el-option label="新顾客" value="new"></el-option>
-              <el-option label="老顾客" value="old"></el-option>
-            </el-select>
-            <el-select
-              style="display: inline-block;margin: 0px 2px"
-              v-model="couponForm.condition3"
-              placeholder="模式">
-              <el-option label="单人" value="multi"></el-option>
-              <el-option label="多人" value="single"></el-option>
-            </el-select>
-            <el-select
-              style="display: inline-block;margin: 0px 2px"
-              v-model="couponForm.condition2"
-              placeholder="行为">
-              <el-option label="扫码" value="code"></el-option>
-              <el-option label="支付" value="pay"></el-option>
-              <el-option label="充值" value="recharge"></el-option>
-              <el-option label="满" value="old"></el-option>
-              <el-option label="分享" value="share"></el-option>
-              <el-option label="推荐" value="commend"></el-option>
-            </el-select>
-          </div>
-        </el-form-item>-->
         <el-form-item label="使用下限">
           <el-input
             v-model.number="couponForm.minimumCharge"
