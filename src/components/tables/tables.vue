@@ -412,7 +412,7 @@
           :rules="[{ required: true, message: '请输入桌号', trigger: 'blur' },]"
           label="桌号">
           <el-input
-            v-model.number="tableForm.num"
+            v-model.string="tableForm.num"
             auto-complete="off"
             placeholder="请输入桌号"></el-input>
         </el-form-item>
