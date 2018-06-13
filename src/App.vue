@@ -143,6 +143,7 @@
 </template>
 <script>
   // 信息推送
+
   export default {
   name: 'App',
   data () {
@@ -203,7 +204,6 @@
     };
   },
   watch:{
-
     watchOrder(val){
       this._pullSetting()
       this._pullPrinter()
@@ -212,7 +212,7 @@
         let audio = document.getElementById('orderAudio')
         audio.play();
       }
-      // console.log(this.settingForm.serviceRemindType);
+       console.log(val);
       // 收银台
       var id = this.settingForm.cashierPrinterId  //打印机id  用来获得打印名
       var num = this.settingForm.cashierPrinterNum
@@ -406,6 +406,7 @@
       });
     },
     submitFormManager(formName) {
+      let _this = this
       this.$refs[formName].validate((valid) => {
         if (valid) {
           let data = {
@@ -430,8 +431,17 @@
                 type: 'success',
                 message: '欢迎登录新沃丰系统'
               });
-
-              this.$router.push({path:'/manager/xwfs/'})
+              localStorage.setItem('username',_this.ruleForm2.username)
+              localStorage.setItem('password',_this.ruleForm2.password)
+              if(localStorage.getItem('login')){
+                this.$router.push({path:'/manager/xwfs/'})
+                localStorage.removeItem('username')
+                localStorage.removeItem('password')
+                return
+              }else {
+                localStorage.setItem('login',1)
+                window.location.reload()
+              }
             }else if(res.data.msg === "username is not exist or password is incorrect"){
               this.$message({
                 duration: 1000,
@@ -447,6 +457,44 @@
           return false;
         }
       });
+    },
+    submitFormManager1(){
+      let data = {
+        username:localStorage.getItem('username'),
+        password:localStorage.getItem('password')
+      }
+      this.$request(this.url.loginRestaurantManager,'form',data).then((res)=>{
+        if(res.data.msg === 'username is not exist'){
+          this.$message({
+            duration: 1000,
+            type: 'info',
+            message: '用户名不存在'
+          });
+        }else if(res.data.msg === 'success'){
+          let rid = res.data.data.rid
+          localStorage.setItem('rid',JSON.stringify(rid))
+
+          this.loginstate = true
+          this.loginShow = false
+          this.$message({
+            duration: 1000,
+            type: 'success',
+            message: '欢迎登录新沃丰系统'
+          });
+          localStorage.removeItem('username')
+          localStorage.removeItem('password')
+          this.$router.push({path:'/manager/xwfs/'})
+
+        }else if(res.data.msg === "username is not exist or password is incorrect"){
+          this.$message({
+            duration: 1000,
+            type: 'info',
+            message: '用户不存在或者密码不正确'
+          });
+        }
+      }).catch((err)=>{
+        console.log(err);
+      })
     },
     changeMenuShow(){
       this.menuShow = !this.menuShow
@@ -519,7 +567,6 @@
       this.$refs[formName].resetFields();
     },
     fitSize(){
-
       if(this.screenWidth < 820){
         this.menuClass = 'menu-class'
         this.menuStyle = {
@@ -539,8 +586,9 @@
     // }
     // alert(this.screenWidth)
     // alert(this.screenHeight)
-
-
+    if(localStorage.getItem('login')){
+      this.submitFormManager1()
+    }
     this._pullSetting()
     this._pullPrinter()
     this._pullPrinterTemplate()

@@ -85,6 +85,7 @@
                 <el-radio-button label="quarter">近一季度</el-radio-button>
               </el-radio-group>
             </div>
+            <el-button style="margin-top: 30px" type="success" @click="_pullAccount" size="mini" round>查看账户信息</el-button>
 
             <!--<el-button style="margin-top: 10px" type="success" @click="submitFilter" round>查看</el-button>-->
           </el-col>
@@ -122,7 +123,7 @@
               </el-radio-group>
             </div>
 
-            <!--<el-button style="margin-top: 10px" type="success" @click="submitFilter" size="mini" round>查看</el-button>-->
+            <el-button style="margin-top: 30px" type="success" @click="_pullAccount" size="mini" round>查看账户余额</el-button>
 
           </el-col>
         </el-row>
@@ -175,6 +176,21 @@
         </el-form>
       </div>
     </el-dialog>
+    <el-dialog
+      title="余额"
+      :visible.sync="accountDialogVisible"
+      width="30%"
+      center>
+      <div style="margin: 20px;text-align: 60px">
+        支付宝账户余额：<span style="font-size: 30px">{{accountMsg.alipayAccount}}</span>
+        <br>
+        微信账户余额：<span style="font-size: 30px">{{accountMsg.wechatAccount}}</span>
+      </div>
+
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="accountDialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -184,6 +200,7 @@ export default {
   data:() => ({
     orderFilter:'',
     typeFilter:'member',
+    accountDialogVisible:false,
     timeFilter:'month',
     othersFilter:'',
     rules2: {
@@ -201,6 +218,7 @@ export default {
     bindAliShowLoading:false,
     getAccountPhoneCode:'',
     showPasswordInput:0,
+    accountMsg:{},
     labelPosition: 'top',
     msg: '财务信息！',
     activeName: 'first',
@@ -291,6 +309,19 @@ export default {
     this.filterFun()
   },
   methods: {
+    _pullAccount(){
+      this.$request(this.url.restaurantAccount,'json',[{
+        feild:"rid",
+        value:localStorage.getItem('rid'),
+        joinType:"eq"
+      }]).then((res)=>{
+        console.log(res.data.data);
+        this.accountMsg = res.data.data[0]
+        this.accountDialogVisible = !this.accountDialogVisible
+      }).catch((err)=>{
+        console.log(err);
+      })
+    },
     filterFun(){
       this.data = []
       let date1 = new Date()

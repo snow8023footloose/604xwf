@@ -635,7 +635,6 @@ export default {
     _pullBindAccount(){
       let _this = this
       this.$request(this.url.restaurantWithdrawAccountComplexPageQuery,'json',[]).then((res)=>{
-        console.log(res.data.data[0],'123123132132');
         let response = res.data.data
         if(response){
           for(var i = 0;i<response.length;i++){
@@ -802,6 +801,7 @@ export default {
         console.log(err);
       })
     },
+
     _pullPrinterTemplate(){
       this.$request(this.url.printerTemplateComplexPageQuery,'json',[{
         feild:"status",

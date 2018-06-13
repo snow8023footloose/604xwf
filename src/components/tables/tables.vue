@@ -223,7 +223,7 @@
                       style="font-size: 20px;font-weight: bolder">
                   总计 <span class="dollar">￥</span>{{item.needPay.toFixed(2)}}</span>
                 <span style="margin-left: 50px"><el-button type="text" @click="printerOrder(item,$event)">打印</el-button></span>
-                <span><el-button type="success" size="small" @click="singleAccounts">结账</el-button></span>
+                <span><el-button type="success" size="small" @click="singleAccounts(item,$event)">结账</el-button></span>
               </div>
               <el-button
                 v-if="item.status === 'not-payed'"
@@ -379,8 +379,8 @@
             </span>
           </div>
           <el-button-group style="position: fixed;bottom: 30px;left: 50%;width: 246;margin-left: -123px" >
-            <el-button type="success" round @click="delayOrderPay" plain icon="el-icon-download">稍后支付</el-button>
-            <el-button type="success" round @click="orderPay" icon="el-icon-d-arrow-right">直接结账</el-button>
+            <el-button type="success" round @click="delayOrderPay" plain icon="el-icon-download">下单</el-button>
+            <!--<el-button type="success" round @click="orderPay" icon="el-icon-d-arrow-right">直接结账</el-button>-->
           </el-button-group>
         </div>
       </div>
@@ -1003,13 +1003,12 @@ export default {
       });
     },
     delayOrderPay(){
-
       var data = {
         restaurantId: parseInt(localStorage.getItem('rid')),
         orderType:'multi',
         tableId: this.tid,
         payType:'underline',
-        payStatus:'not-payed',
+        status:'not-payed',
         serverType:'real-time',
       }
       this.$request(this.url.payOrder,'form',data).then((res)=>{
@@ -1027,7 +1026,7 @@ export default {
         orderType:'multi',
         serverType:'real-time',
         tableId: this.tid,
-        payStatus:'has-pay',
+        status:'has-pay',
         payType:'underline'
       }
       this.$request(this.url.payOrder,'form',data).then((res)=>{
@@ -1103,9 +1102,16 @@ export default {
       let el = foodList[index];
       this.foodsScroll.scrollToElement(el, 300);
     },
-    singleAccounts(){
+    singleAccounts(item,event){
+      console.log(item)
       alert("结账中……")
-      this.goeasy('service')
+      item.status = 'has-pay'
+      this.$request(this.url.userOrderUpdate,'json',item).then((res)=>{
+         console.log(res.data.data);
+//        this.tableList = res.data.data
+      }).catch((err)=>{
+          console.log(err);
+      })
     },
     incrementTotal(target) {
       //体验优化,异步执行下落动画
@@ -1355,7 +1361,8 @@ export default {
         }
       ]).then((res)=>{
         this.tableCartList = res.data.data
-      }).catch((err)=>{
+      console.log(this.tableCartList);
+    }).catch((err)=>{
         console.log(err);
       })
     },

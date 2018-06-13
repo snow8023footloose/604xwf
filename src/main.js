@@ -63,15 +63,12 @@ let app = new Vue({
 })
 
 function handService(data) {
-  console.log('rid',localStorage.getItem('rid'));
   app.$store.state.serviceStatus = data
 }
 function handTable(data) {
-  console.log('rid',localStorage.getItem('rid'));
   app.$store.state.tableStatus = data
 }
 function handOrder(data) {
-  console.log('rid',localStorage.getItem('rid'));
   app.$store.state.orderStatus = data
 }
 export default app;
