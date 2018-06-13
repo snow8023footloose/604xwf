@@ -7,9 +7,8 @@
     <title>新沃丰后台管理系统</title>
     <script src="https://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
-    <script src="http://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
+    <script src="https://res.wx.qq.com/connect/zh_CN/htmledition/js/wxLogin.js"></script>
     <script src="https://cdn-hangzhou.goeasy.io/goeasy.js"></script>
-
   </head>
   <body>
     <div id="app">
@@ -17,7 +16,6 @@
   </body>
 </html>
 <script>
-
   var CreatedOKLodop7766=null;
   //====判断是否需要安装CLodop云打印服务器:====
   function needCLodop(){
@@ -63,7 +61,7 @@
 
     //引用双端口(8000和18000）避免其中某个被占用：
     oscript = document.createElement("script");
-    oscript.src ="http://localhost:18000/CLodopfuncs.js?priority=0";
+    oscript.src ="https://localhost:18000/CLodopfuncs.js?priority=0";
     head.insertBefore( oscript,head.firstChild );
   };
 
@@ -132,8 +130,6 @@
         return LODOP;
       };
       //===如下空白位置适合调用统一功能(如注册语句、语言选择等):===
-
-      //===========================================================
       return LODOP;
     } catch(err) {alert("getLodop出错:"+err);};
   };

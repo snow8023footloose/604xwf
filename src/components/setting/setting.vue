@@ -635,10 +635,20 @@ export default {
     _pullBindAccount(){
       let _this = this
       this.$request(this.url.restaurantWithdrawAccountComplexPageQuery,'json',[]).then((res)=>{
-        this.wechatGetName = res.data.data[0].nickname + '已绑定'
-        this.alipayGetName = res.data.data[1].name + '已绑定';
-        _this.alipaymsg = '切换支付宝绑定'
-        // console.log(res.data.data);
+        console.log(res.data.data[0],'123123132132');
+        let response = res.data.data
+        if(response){
+          for(var i = 0;i<response.length;i++){
+            if(response[i].type == 'alipay'){
+              _this.alipayGetName = response[i].name + '已绑定';
+            }
+            if(response[i].type == 'wechat'){
+              _this.wechatGetName = response[i].nickname + '已绑定'
+            }
+          }
+          _this.alipaymsg = '切换支付宝绑定'
+        }
+
       }).catch((err)=>{
         console.log(err);
       })
@@ -758,7 +768,7 @@ export default {
         id:"qcode",    //div的id
         appid: "wx687467655647657e",
         scope: "snsapi_login",
-        redirect_uri: "http://xwfwlkj.natapp1.cc/api/restaurantWithdrawAccount/bind",  //回调地址
+        redirect_uri: "https://www.xwfwlkj.com/api/restaurantWithdrawAccount/bind",  //回调地址
         state: localStorage.getItem('rid') + ',' + _this.WechatRecode,　　　　　　        //参数，可带可不带
         style: "",　　　　　　　                                                           //样式  提供"black"、"white"可选，默认为黑色文字描述
         href: "/"                                                                         //自定义样式链接，第三方可根据实际需求覆盖默认样式。
@@ -783,7 +793,6 @@ export default {
         this.settingForm = res.data.data[0]
       }).catch((err)=>{
         console.log(err);
-
       })
     },
     _pullPrinter(){
@@ -836,7 +845,7 @@ export default {
        console.log("cleared");
        this.printerForm = {}
        this.showUpdatePrinter = 0
-      this.showFormPrinterAdd = !this.showFormPrinterAdd;
+       this.showFormPrinterAdd = !this.showFormPrinterAdd;
     },
     closePrinterTemplateLog(){
       this.showFormPrinterTemplateAdd = !this.showFormPrinterTemplateAdd;

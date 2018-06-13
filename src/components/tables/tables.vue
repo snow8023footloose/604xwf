@@ -717,7 +717,6 @@ export default {
     watchTable(){
       return this.$store.state.tableStatus
     },
-
   },
   watch:{
     watchTable(val) {

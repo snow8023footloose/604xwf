@@ -26,11 +26,12 @@ Vue.prototype.cashier80 = cashier80
 Vue.prototype.kitchen60 = kitchen60
 Vue.prototype.kitchen80 = kitchen80
 
-
 let goEasy = new GoEasy({
   appkey: 'BS-f7859ab35ae6453d8cca76020ece4d7c'
 });
+
 goEasy.subscribe({
+
   channel: 'WEB:PUSH:' + localStorage.getItem('rid'),
   onMessage: function (message) {
     let msg = JSON.parse(message.content)
@@ -51,14 +52,6 @@ goEasy.subscribe({
   }
 });
 
-
-
-
-
-
-
-
-
 /* eslint-disable no-new */
 let app = new Vue({
   el: '#app',
@@ -70,14 +63,15 @@ let app = new Vue({
 })
 
 function handService(data) {
+  console.log('rid',localStorage.getItem('rid'));
   app.$store.state.serviceStatus = data
 }
 function handTable(data) {
+  console.log('rid',localStorage.getItem('rid'));
   app.$store.state.tableStatus = data
 }
 function handOrder(data) {
+  console.log('rid',localStorage.getItem('rid'));
   app.$store.state.orderStatus = data
 }
-
-
 export default app;

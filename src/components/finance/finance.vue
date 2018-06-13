@@ -265,7 +265,7 @@ export default {
         this.showPasswordInput =1
         this.$message({
           type: 'success',
-          message: '验证码正确!'
+          message: '验证码正确!5'
         });
       }else {
         this.showPasswordInput =0

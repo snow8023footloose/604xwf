@@ -177,6 +177,7 @@
         switchTab: true
       },
       showServiceMsg:false,
+      settingForm:{},
       fullscreenLoading: false,
       activeService:'first',
       loginstate: false,
@@ -205,6 +206,8 @@
 
     watchOrder(val){
       this._pullSetting()
+      this._pullPrinter()
+      this._pullPrinterTemplate()
       if(this.settingForm.serviceRemindType){
         let audio = document.getElementById('orderAudio')
         audio.play();
@@ -292,6 +295,31 @@
     }
   },
   methods: {
+    _pullPrinter(){
+      this.$request(this.url.printerComplexPageQuery,'json',[]).then((res)=>{
+        this.printerTable = res.data.data
+      }).catch((err)=>{
+        console.log(err);
+      })
+    },
+    _pullPrinterTemplate(){
+      this.$request(this.url.printerTemplateComplexPageQuery,'json',[{
+        feild:"status",
+        value:"enable",
+        joinType:"eq"
+      }]).then((res)=>{
+        this.printerTemplateTable = res.data.data
+      }).catch((err)=>{
+        console.log(err);
+      })
+    },
+    _pullSetting(){
+      this.$request(this.url.restaurantSetting,'json',[]).then((res)=>{
+        this.settingForm = res.data.data[0]
+      }).catch((err)=>{
+        console.log(err);
+      })
+    },
     deleteService(val){
       console.log('1');
       console.log(val);
@@ -512,6 +540,10 @@
     // alert(this.screenWidth)
     // alert(this.screenHeight)
 
+
+    this._pullSetting()
+    this._pullPrinter()
+    this._pullPrinterTemplate()
     this.fitSize()
   },
   mounted(){
