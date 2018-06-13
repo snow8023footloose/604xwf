@@ -539,6 +539,11 @@ export default {
       if(val.length === 6){
         this.WeChatFocus()
       }
+    },
+    aliRecode(val){
+      if(val.length === 6){
+        alert('验证码正确')
+      }
     }
   },
   data() {

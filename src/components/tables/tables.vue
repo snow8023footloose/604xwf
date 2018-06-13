@@ -378,7 +378,7 @@
               <span class="dollar">￥</span>{{realPay.toFixed(2)}}
             </span>
           </div>
-          <el-button-group style="position: fixed;bottom: 30px;left: 50%;width: 246;margin-left: -123px" >
+          <el-button-group style="position: fixed;bottom: 30px;left: 50%;margin-left: -123px" >
             <el-button type="success" round @click="delayOrderPay" plain icon="el-icon-download">下单</el-button>
             <!--<el-button type="success" round @click="orderPay" icon="el-icon-d-arrow-right">直接结账</el-button>-->
           </el-button-group>
@@ -873,13 +873,13 @@ export default {
             // console.log('selectedArryTags111111111111111',selectedArryTags);
             let attrTags = selectedArryTags.join(',');
             let attrJoin = _this.transformArrySku().join('_');
-            // console.log('attrJoin', attrJoin);
+            console.log('attrJoin', attrJoin);
             let selectedSkuObj = _this.findSkuByAttrJoin(attrJoin);
             // console.log('确定_this.getFoods',_this.getFoods);
             // console.log('selectedSkuObj===================',selectedSkuObj);
-
+            console.log(selectedSkuObj,'selectedSkuObj');
             if(!selectedSkuObj){
-              alert('规格没有选完')
+              alert('规格没有选完2')
               return false
             }
             //删掉相关联的规格都会引起id出现问题
@@ -939,7 +939,6 @@ export default {
     },
     incrementTotalAdd(g) {
       this.getDataFromSelectFoods.event = g.event
-      console.log('餐桌',this.tableForm);
       this.tagsTotalPrice = 0
       this.selectedSkuArr = []
       this.selectedTags = []
@@ -991,6 +990,8 @@ export default {
       }
     },
     findSkuByAttrJoin(selectedJoinAttr){
+      console.log(selectedJoinAttr,'selectedJoinAttr');
+      console.log(this.getFoods.skus,'goodsku');
       for(let item of this.getFoods.skus){
         if(item.attrJion === selectedJoinAttr){
           return item;
