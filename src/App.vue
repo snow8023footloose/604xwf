@@ -205,81 +205,86 @@
   },
   watch:{
     watchOrder(val){
-      this._pullSetting()
-      this._pullPrinter()
-      this._pullPrinterTemplate()
-      if(this.settingForm.serviceRemindType){
-        let audio = document.getElementById('orderAudio')
-        audio.play();
-      }
-       console.log(val);
-      // 收银台
-      var id = this.settingForm.cashierPrinterId  //打印机id  用来获得打印名
-      var num = this.settingForm.cashierPrinterNum
-      var templateId = this.settingForm.cashierPrinterTemplate  //打印机模板
-
-      // 厨房
-      var idKitchen = this.settingForm.kitchenPrinterId  //打印机id  用来获得打印名
-      var numKitchen = this.settingForm.kitchenPrinterNum
-      var templateIdKitchen = this.settingForm.kitchenPrinterTemplate  //打印机模板
-
-      var printerName
-      var printerTemplate
-      var printerNameKitchen
-      var printerTemplateKitchen
-
-      for(let i = 0; i<this.printerTable.length; i++){
-        if(this.printerTable[i].id === id){
-          printerName = this.printerTable[i].driverName  //获得打印机名
+      console.log('has-pay');
+      if(val.status === "has-pay"){
+        console.log('has-pay');
+        this._pullSetting()
+        this._pullPrinter()
+        this._pullPrinterTemplate()
+        if(this.settingForm.serviceRemindType){
+          let audio = document.getElementById('orderAudio')
+          audio.play();
         }
-      }
-      for(let i = 0; i<this.printerTemplateTable.length; i++){
-        if(this.printerTemplateTable[i].id === templateId){
-          printerTemplate = this.printerTemplateTable[i].name  //获得打印机模板
-        }
-      }
+         console.log(val);
+        // 收银台
+        var id = this.settingForm.cashierPrinterId  //打印机id  用来获得打印名
+        var num = this.settingForm.cashierPrinterNum
+        var templateId = this.settingForm.cashierPrinterTemplate  //打印机模板
 
-      for(let i = 0; i<this.printerTable.length; i++){
-        if(this.printerTable[i].id === idKitchen){
-          printerNameKitchen = this.printerTable[i].driverName  //获得打印机名
-        }
-      }
-      for(let i = 0; i<this.printerTemplateTable.length; i++){
-        if(this.printerTemplateTable[i].id === templateIdKitchen){
-          printerTemplateKitchen = this.printerTemplateTable[i].name  //获得打印机模板
-        }
-      }
+        // 厨房
+        var idKitchen = this.settingForm.kitchenPrinterId  //打印机id  用来获得打印名
+        var numKitchen = this.settingForm.kitchenPrinterNum
+        var templateIdKitchen = this.settingForm.kitchenPrinterTemplate  //打印机模板
 
-      // 收银台打印
-      console.log('收银台准备打印-----清单：',val, '打印机名：',printerName,'数量：', num,'打印模板名：',printerTemplate);
-      if(printerTemplate === '80mm-价格-订单号'){
-        this.cashier80(val,printerName,num)
-        console.log('正在打印 启动的是收银台80mm模板，打印机器是' + printerName);
-      }else if(printerTemplate === '60mm-价格-订单号'){
-        this.cashier60(val,printerName,num)
-        console.log('正在打印 启动的是收银台60mm模板，打印机器是' + printerName);
-      }else if(printerTemplate === '80mm-无价格'){
-        this.kitchen80(val,printerName,num)
-        console.log('正在打印 启动的是厨房80mm模板，打印机器是'+ printerName)
-      }else if(printerTemplate === '60mm-无价格'){
-        this.kitchen60(val,printerName,num)
-        console.log('正在打印 启动的是厨房60mm模板，打印机器是'+ printerName)
-      }
+        var printerName
+        var printerTemplate
+        var printerNameKitchen
+        var printerTemplateKitchen
 
-      // 厨房打印
-      console.log('厨房准备打印-----清单：',val, '打印机名：',printerNameKitchen,'数量：', numKitchen,'打印模板名：',printerTemplateKitchen);
-      if(printerTemplateKitchen === '80mm-无价格'){
-        this.kitchen80(val,printerNameKitchen,numKitchen)
-        console.log('正在打印 启动的是厨房80mm模板，打印机器是' + printerNameKitchen);
-      }else if(printerTemplateKitchen === '60mm-无价格'){
-        this.kitchen60(val,printerNameKitchen,numKitchen)
-        console.log('正在打印 启动的是厨房60mm模板，打印机器是' + printerNameKitchen);
-      }else if(printerTemplateKitchen === '80mm-价格-订单号'){
-        this.cashier80(val,printerNameKitchen,numKitchen)
-        console.log('正在打印 启动的是收银台80mm模板，打印机器是' + printerNameKitchen);
-      }else if(printerTemplateKitchen === '60mm-价格-订单号'){
-        this.cashier60(val,printerNameKitchen,numKitchen)
-        console.log('正在打印 启动的是收银台60mm模板，打印机器是' + printerNameKitchen);
+        for(let i = 0; i<this.printerTable.length; i++){
+          if(this.printerTable[i].id === id){
+            printerName = this.printerTable[i].driverName  //获得打印机名
+          }
+        }
+        for(let i = 0; i<this.printerTemplateTable.length; i++){
+          if(this.printerTemplateTable[i].id === templateId){
+            printerTemplate = this.printerTemplateTable[i].name  //获得打印机模板
+          }
+        }
+
+        for(let i = 0; i<this.printerTable.length; i++){
+          if(this.printerTable[i].id === idKitchen){
+            printerNameKitchen = this.printerTable[i].driverName  //获得打印机名
+          }
+        }
+        for(let i = 0; i<this.printerTemplateTable.length; i++){
+          if(this.printerTemplateTable[i].id === templateIdKitchen){
+            printerTemplateKitchen = this.printerTemplateTable[i].name  //获得打印机模板
+          }
+        }
+        console.log(val.status);
+
+        // 收银台打印
+        console.log('收银台准备打印-----清单：',val, '打印机名：',printerName,'数量：', num,'打印模板名：',printerTemplate);
+        if(printerTemplate === '80mm-价格-订单号'){
+          this.cashier80(val,printerName,num)
+          console.log('正在打印 启动的是收银台80mm模板，打印机器是' + printerName);
+        }else if(printerTemplate === '60mm-价格-订单号'){
+          this.cashier60(val,printerName,num)
+          console.log('正在打印 启动的是收银台60mm模板，打印机器是' + printerName);
+        }else if(printerTemplate === '80mm-无价格'){
+          this.kitchen80(val,printerName,num)
+          console.log('正在打印 启动的是厨房80mm模板，打印机器是'+ printerName)
+        }else if(printerTemplate === '60mm-无价格'){
+          this.kitchen60(val,printerName,num)
+          console.log('正在打印 启动的是厨房60mm模板，打印机器是'+ printerName)
+        }
+
+        // 厨房打印
+        console.log('厨房准备打印-----清单：',val, '打印机名：',printerNameKitchen,'数量：', numKitchen,'打印模板名：',printerTemplateKitchen);
+        if(printerTemplateKitchen === '80mm-无价格'){
+          this.kitchen80(val,printerNameKitchen,numKitchen)
+          console.log('正在打印 启动的是厨房80mm模板，打印机器是' + printerNameKitchen);
+        }else if(printerTemplateKitchen === '60mm-无价格'){
+          this.kitchen60(val,printerNameKitchen,numKitchen)
+          console.log('正在打印 启动的是厨房60mm模板，打印机器是' + printerNameKitchen);
+        }else if(printerTemplateKitchen === '80mm-价格-订单号'){
+          this.cashier80(val,printerNameKitchen,numKitchen)
+          console.log('正在打印 启动的是收银台80mm模板，打印机器是' + printerNameKitchen);
+        }else if(printerTemplateKitchen === '60mm-价格-订单号'){
+          this.cashier60(val,printerNameKitchen,numKitchen)
+          console.log('正在打印 启动的是收银台60mm模板，打印机器是' + printerNameKitchen);
+        }
       }
     },
     watchService(val){
@@ -340,13 +345,11 @@
         this._pullServiceLog()
       })
     },
-
-
     _pullServiceLog(){
       var startTimeC = new Date().getTime()
-      console.log(startTimeC);
-      console.log(startTimeC - 86400000);
-      console.log(this.TimetoString(startTimeC-86400000));
+      // console.log(startTimeC);
+      // console.log(startTimeC - 86400000);
+      // console.log(this.TimetoString(startTimeC-86400000));
       this.$request(this.url.restaurantServiceComplexPageQuery,'json',[
         {
           feild:'createTime',
