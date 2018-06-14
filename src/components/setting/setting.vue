@@ -88,13 +88,6 @@
 
 
             <div class="matter2">
-              <!--<el-form-item label="促销状态" label-width="120px">-->
-                <!--<el-select v-model="settingForm.promotiomStatus" placeholder="请选择推广状态">-->
-                  <!--<el-option label="未促销" value="close"></el-option>-->
-                  <!--<el-option label="会员促销" value="member"></el-option>-->
-                  <!--<el-option label="活动促销" value="promotion"></el-option>-->
-                <!--</el-select>-->
-              <!--</el-form-item>-->
 
               <el-form-item label="提现类型" label-width="120px">
                 <el-select v-model="settingForm.withdrawType" placeholder="请选择提现类型">
@@ -546,6 +539,11 @@ export default {
       if(val.length === 6){
         this.WeChatFocus()
       }
+    },
+    aliRecode(val){
+      if(val.length === 6){
+        alert('验证码正确')
+      }
     }
   },
   data() {
@@ -642,10 +640,19 @@ export default {
     _pullBindAccount(){
       let _this = this
       this.$request(this.url.restaurantWithdrawAccountComplexPageQuery,'json',[]).then((res)=>{
-        this.wechatGetName = res.data.data[0].nickname + '已绑定'
-        this.alipayGetName = res.data.data[1].name + '已绑定';
-        _this.alipaymsg = '切换支付宝绑定'
-        // console.log(res.data.data);
+        let response = res.data.data
+        if(response){
+          for(var i = 0;i<response.length;i++){
+            if(response[i].type == 'alipay'){
+              _this.alipayGetName = response[i].name + '已绑定';
+            }
+            if(response[i].type == 'wechat'){
+              _this.wechatGetName = response[i].nickname + '已绑定'
+            }
+          }
+          _this.alipaymsg = '切换支付宝绑定'
+        }
+
       }).catch((err)=>{
         console.log(err);
       })
@@ -765,10 +772,10 @@ export default {
         id:"qcode",    //div的id
         appid: "wx687467655647657e",
         scope: "snsapi_login",
-        redirect_uri: "http://8yziif.natappfree.cc/restaurantWithdrawAccount/bind",        //回调地址
-        state: '1524988356660049,' + _this.WechatRecode,　　　　　　//参数，可带可不带
-        style: "",　　　　　　　//样式  提供"black"、"white"可选，默认为黑色文字描述
-        href: "/"              //自定义样式链接，第三方可根据实际需求覆盖默认样式。
+        redirect_uri: "https://www.xwfwlkj.com/api/restaurantWithdrawAccount/bind",  //回调地址
+        state: localStorage.getItem('rid') + ',' + _this.WechatRecode,　　　　　　        //参数，可带可不带
+        style: "",　　　　　　　                                                           //样式  提供"black"、"white"可选，默认为黑色文字描述
+        href: "/"                                                                         //自定义样式链接，第三方可根据实际需求覆盖默认样式。
       });
     },
     UID(n){
@@ -790,7 +797,6 @@ export default {
         this.settingForm = res.data.data[0]
       }).catch((err)=>{
         console.log(err);
-
       })
     },
     _pullPrinter(){
@@ -800,6 +806,7 @@ export default {
         console.log(err);
       })
     },
+
     _pullPrinterTemplate(){
       this.$request(this.url.printerTemplateComplexPageQuery,'json',[{
         feild:"status",
@@ -843,7 +850,7 @@ export default {
        console.log("cleared");
        this.printerForm = {}
        this.showUpdatePrinter = 0
-      this.showFormPrinterAdd = !this.showFormPrinterAdd;
+       this.showFormPrinterAdd = !this.showFormPrinterAdd;
     },
     closePrinterTemplateLog(){
       this.showFormPrinterTemplateAdd = !this.showFormPrinterTemplateAdd;

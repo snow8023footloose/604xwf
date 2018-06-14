@@ -1086,6 +1086,7 @@ export default {
       inputVisible1: false,
       inputValue1: '',
       toDynamicTags2:[],
+      dIndex:0,
       dynamicTags2: [],
       inputVisible2: false,
       inputValue2: '',
@@ -1851,7 +1852,7 @@ export default {
             type: 'success',
             message: '数据提交成功!'
           });
-          this.dishesDataTable.splice(index,1)
+          this._pullDishes()
         }).catch((err)=>{
           this.$message({
             type: 'info',
@@ -1876,7 +1877,8 @@ export default {
       this.valueOfTagsPopularize = []
       this.addOrEdit = 2;
       this.dishes = Object.assign({},row);
-      this.dishesIndex = index;
+      this.dishesIndex = row.id;
+      this.dIndex = index
       let arrTagsPopularize = []
       if(row.popularizeTags === null){
 
@@ -1948,7 +1950,7 @@ export default {
         });
         return false
       }
-      let index = this.dishesIndex
+      let index = this.dIndex
       let updateObj = {
         id:this.dishes.id
       }
@@ -2532,6 +2534,7 @@ export default {
       this.generating = !this.generating;
       this.generateSkuDate =  this.generateSku([],valueOfSku);
       for(var j=0; j<this.generateSkuDate.length; j++){
+        console.log(this.dishesIndex);
         this.generateSkuDate[j].did = this.dishesIndex
         this.generateSkuDate[j].normalPrice = this.dishes.normalPrice
         this.generateSkuDate[j].memberPrice = this.dishes.memberPrice

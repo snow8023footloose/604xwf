@@ -45,7 +45,7 @@ export function cashier60(orderMsg,printerName,number) {
   LODOP.ADD_PRINT_LINE(hasHeight, 0, hasHeight, 259, 2, 0.5);
 
   LODOP.ADD_PRINT_TEXT(hasHeight, 0, 80, 20, "应付金额");
-  LODOP.ADD_PRINT_TEXT(hasHeight, 125, 70, 20, '-' +  orderMsg.needPay);
+  LODOP.ADD_PRINT_TEXT(hasHeight, 125, 70, 20,  orderMsg.needPay);
   hasHeight += 20;
 
   if(orderMsg.discountMoney > 0){

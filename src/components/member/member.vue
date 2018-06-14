@@ -12,44 +12,44 @@
             :height="$store.state.tableHeight"
           >
             <el-table-column type="expand">
-              <template slot-scope="props">
-                <el-form label-position="left" inline class="demo-table-expand">
-                  <el-form-item label="会员名称">
-                    <span>{{ props.row.user.nickname }}</span>
-                  </el-form-item>
-                  <el-form-item label="会员等级">
-                    <span>{{ props.row.level }}</span>
-                  </el-form-item>
-                  <el-form-item label="会员  ID">
-                    <span>{{ props.row.id }}</span>
-                  </el-form-item>
-                  <el-form-item label="享受优惠">
-                    <span>代金券 优惠券 人头券</span>
-                  </el-form-item>
-                  <el-form-item label="消费详情">
-                  </el-form-item>
-                  <el-form-item label="">
-                  </el-form-item>
-                  <el-form-item label="时间：2018／06／06">
-                    …………… 消费 ¥234.00
-                  </el-form-item>
-                  <el-form-item label="">
-                  </el-form-item>
-                  <el-form-item label="时间：2018／06／01">
-                    …………… 消费 ¥134.00
-                  </el-form-item>
-                  <el-form-item label="">
-                  </el-form-item>
-                  <el-form-item label="时间：2018／05／26">
-                    …………… 消费 ¥204.00
-                  </el-form-item>
-                  <el-form-item label="">
-                  </el-form-item>
-                  <el-form-item label="时间：2018／05／27">
-                    …………… 消费 ¥2234.00
-                  </el-form-item>
-                </el-form>
-              </template>
+              <!--<template slot-scope="props">-->
+                <!--<el-form label-position="left" inline class="demo-table-expand">-->
+                  <!--<el-form-item label="会员名称">-->
+                    <!--<span>{{ props.row.user.nickname }}</span>-->
+                  <!--</el-form-item>-->
+                  <!--<el-form-item label="会员等级">-->
+                    <!--<span>{{ props.row.level }}</span>-->
+                  <!--</el-form-item>-->
+                  <!--<el-form-item label="会员  ID">-->
+                    <!--<span>{{ props.row.id }}</span>-->
+                  <!--</el-form-item>-->
+                  <!--<el-form-item label="享受优惠">-->
+                    <!--<span>代金券 优惠券 人头券</span>-->
+                  <!--</el-form-item>-->
+                  <!--<el-form-item label="消费详情">-->
+                  <!--</el-form-item>-->
+                  <!--<el-form-item label="">-->
+                  <!--</el-form-item>-->
+                  <!--<el-form-item label="时间：2018／06／06">-->
+                    <!--…………… 消费 ¥234.00-->
+                  <!--</el-form-item>-->
+                  <!--<el-form-item label="">-->
+                  <!--</el-form-item>-->
+                  <!--<el-form-item label="时间：2018／06／01">-->
+                    <!--…………… 消费 ¥134.00-->
+                  <!--</el-form-item>-->
+                  <!--<el-form-item label="">-->
+                  <!--</el-form-item>-->
+                  <!--<el-form-item label="时间：2018／05／26">-->
+                    <!--…………… 消费 ¥204.00-->
+                  <!--</el-form-item>-->
+                  <!--<el-form-item label="">-->
+                  <!--</el-form-item>-->
+                  <!--<el-form-item label="时间：2018／05／27">-->
+                    <!--…………… 消费 ¥2234.00-->
+                  <!--</el-form-item>-->
+                <!--</el-form>-->
+              <!--</template>-->
             </el-table-column>
             <el-table-column
               sortable

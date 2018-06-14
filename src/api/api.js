@@ -5,8 +5,8 @@ import qs from 'qs'
 // axios.defaults.baseURL = 'http://192.168.2.189';
 axios.defaults.withCredentials = true
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-var BURL = 'http://192.168.2.189/api'
-// var BURL = 'https://www.xwfwlkj.com/api'
+ // var BURL = 'http://192.168.2.189/api'
+var BURL = 'https://www.xwfwlkj.com/api'
 export function _addRestaurant(obj) {
   return axios.post("/restaurant/add",  obj, {
     header:{
@@ -32,6 +32,7 @@ export  function urlColletion() {
 
     //提现
     restaurantAccountWithdraw: BURL + '/restaurantAccount/withdraw',
+    restaurantAccount: BURL + '/restaurantAccount/complexPageQuery',
 
     //统计
     getCountDishes: BURL + '/orderDishes/getCountDishes',
@@ -120,6 +121,7 @@ export  function urlColletion() {
     sku1: BURL + '/sku/complexPageQuery',
 
     userOrder: BURL + '/userOrder/complexPageQuery',
+    userOrderUpdate: BURL + '/userOrder/update',
 
     //规格
     spec1: BURL + '/restaurantSpec/add',
