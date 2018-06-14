@@ -159,6 +159,7 @@
               width="100">
               <template slot-scope="scope">
                 <span v-if="scope.row.type === 'coupon'">优惠券</span>
+                <span v-if="scope.row.type === 'voucher'">代金券</span>
                 <span v-if="scope.row.type === 'platform-voucher'">平台代金券</span>
               </template>
             </el-table-column>
@@ -238,12 +239,10 @@
               label="操作"
               width="130">
               <template slot-scope="scope">
-                <el-button @click.native.prevent="deleteDiscountCoupon(scope.row)" type="text" size="small">
-                  删除
-                </el-button>
-                <el-button @click.native.prevent="editDiscountCoupon(scope.row)" type="text" size="small">编辑</el-button>
-                <el-button v-if="scope.row.status === 'enable'" @click.native.prevent="disableDiscountCoupon(scope.row)" class="not-sell" type="text" size="small">下架</el-button>
-                <el-button v-if="scope.row.status === 'disable'" @click.native.prevent="enableDiscountCoupon(scope.row)" type="text" size="small">上架</el-button>
+                <el-button v-if="scope.row.type === 'voucher' || scope.row.type === 'coupon'" @click.native.prevent="deleteDiscountCoupon(scope.row)" type="text" size="small">删除</el-button>
+                <el-button v-if="scope.row.type === 'voucher' || scope.row.type === 'coupon'" @click.native.prevent="editDiscountCoupon(scope.row)" type="text" size="small">编辑</el-button>
+                <el-button v-if="scope.row.status === 'enable' && scope.row.type !== 'platform-voucher'" @click.native.prevent="disableDiscountCoupon(scope.row)" class="not-sell" type="text" size="small">下架</el-button>
+                <el-button v-if="scope.row.status === 'disable' && scope.row.type !== 'platform-voucher'" @click.native.prevent="enableDiscountCoupon(scope.row)" type="text" size="small">上架</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -521,8 +520,9 @@
         this.showFormCoupon = !this.showFormCoupon
       },
       addConponConfirm(){
-        this.couponForm.tid = 1000000000
+        // this.couponForm.tid = 1000000000
         let data =  this.couponForm
+        console.log(data);
         this.$request(this.url.discountCouponAdd,'json',data).then((res)=>{
           this.$message({
             type: 'success',
