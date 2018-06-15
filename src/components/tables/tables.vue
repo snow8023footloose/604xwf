@@ -990,8 +990,8 @@ export default {
       }
     },
     findSkuByAttrJoin(selectedJoinAttr){
-      console.log(selectedJoinAttr,'selectedJoinAttr');
-      console.log(this.getFoods.skus,'goodsku');
+      // console.log(selectedJoinAttr,'selectedJoinAttr');
+      // console.log(this.getFoods.skus,'goodsku');
       for(let item of this.getFoods.skus){
         if(item.attrJion === selectedJoinAttr){
           return item;
@@ -1362,7 +1362,7 @@ export default {
         }
       ]).then((res)=>{
         this.tableCartList = res.data.data
-      console.log(this.tableCartList);
+      // console.log(this.tableCartList);
     }).catch((err)=>{
         console.log(err);
       })

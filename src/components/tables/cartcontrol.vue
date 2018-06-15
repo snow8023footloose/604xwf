@@ -39,7 +39,7 @@
 
       addCart(event) {
         this.show = 1
-        console.log(this.food);
+        // console.log(this.food);
         if (!event._constructed) {
           return false;
         }
